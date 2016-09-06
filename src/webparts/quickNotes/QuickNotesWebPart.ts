@@ -91,12 +91,6 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
 
         this.Tribute = t;
 
-        let kok = `<div class="ms-ListItem">
-
-    <span class="ms-ListItem-secondaryText">Meeting notes</span>
-    <span class="ms-ListItem-tertiaryText">Today we discussed the importance of a, b, and c in regards to d.</span>
-    `;
-
         var tribute = new this.Tribute({
           menuItemTemplate: function (item) {
             return `<div class="ms-ListItem">

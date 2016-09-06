@@ -7,9 +7,11 @@ This is where you include your web part docs.
 ```bash
 git clone the repo
 npm i
-npm i -g gulp
-gulp
+gulp serve
 ```
+
+### To gte sample running
+regist new azure ad application and get your own clientid
 
 This package produces the following:
 
