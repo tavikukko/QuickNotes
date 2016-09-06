@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "quicknotes-client-side-solution",
+    "id": "07cf9040-bd34-4a0a-985d-c45b566d452b",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "quicknotes.spapp"
+  }
+}
