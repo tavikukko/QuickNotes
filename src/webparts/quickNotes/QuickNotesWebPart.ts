@@ -89,8 +89,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
             `<div class="ms-ListItem" style="padding: 0;">
                       <span class="ms-ListItem-secondaryText">`+ item.original.value + `</span>
                       <span class="ms-ListItem-tertiaryText">`+ item.original.email + `</span>
-                    </div>`
-          ,
+                    </div>`,
           trigger: '#',
           values: [
           ],
@@ -124,7 +123,6 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
         document.getElementById('mentions-wp').addEventListener('tribute-no-match', function (e) {
 
           const authContext: AuthenticationContext = new AuthenticationContext(authConfig);
-          //const graphApi: string = "https://graph.microsoft.com";
 
           const self: any = this;
           const d: any = jQuery.Deferred<any>();
@@ -152,7 +150,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
               if (response["@odata.context"].includes("/drive/root/children")) {
                 var documents: any = response.value;
                 for (var document of documents) {
-                  if (tribute.collection[0].values.filter( d => d.key.toLowerCase() == document.name.toLowerCase()).length == 0)
+                  if (tribute.collection[0].values.filter(d => d.key.toLowerCase() == document.name.toLowerCase()).length == 0)
                     tribute.append(0, [
                       { key: document.name, value: document.name, email: document.webUrl }
                     ]);
@@ -179,11 +177,9 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
             });
           });
         });
-
       });
     }
     if (this.displayMode === DisplayMode.Edit) this.manageAuthentication();
-
   }
 
   private manageAuthentication(): void {
@@ -220,7 +216,5 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
         authContext.login();
       };
     }
-
   }
-
 }
