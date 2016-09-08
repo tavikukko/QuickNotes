@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/adal/adal.d.ts" />
-
 import {
   BaseClientSideWebPart,
   IWebPartContext,

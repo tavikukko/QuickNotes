@@ -10,6 +10,9 @@
     },
     "jquery/jquery.d.ts": {
       "commit": "084e55916674ff7128722bf72150aa55acea08d9"
+    },
+    "adal/adal.d.ts": {
+      "commit": "084e55916674ff7128722bf72150aa55acea08d9"
     }
   }
 }
