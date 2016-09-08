@@ -11,7 +11,8 @@ npm i -g @microsoft/generator-sharepoint
 ### Building the code
 
 ```bash
-git clone <repo url>
+git clone https://github.com/tavikukko/QuickNotes.git
+cd QuickNotes
 npm i
 gulp serve
 ```
