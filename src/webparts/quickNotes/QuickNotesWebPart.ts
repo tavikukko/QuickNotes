@@ -2,15 +2,11 @@
 
 import {
   BaseClientSideWebPart,
-  IPropertyPaneSettings,
   IWebPartContext,
-  PropertyPaneTextField,
   IWebPartData
 } from '@microsoft/sp-client-preview';
 import { DisplayMode } from '@microsoft/sp-client-base';
 
-import styles from './QuickNotes.module.scss';
-import * as strings from 'quickNotesStrings';
 import { IQuickNotesWebPartProps } from './IQuickNotesWebPartProps';
 import importableModuleLoader from '@microsoft/sp-module-loader';
 
@@ -91,23 +87,22 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
         this.Tribute = t;
 
         var tribute = new this.Tribute({
-          menuItemTemplate: function (item) {
-            return `<div class="ms-ListItem" style="padding: 0;">
+          menuItemTemplate: item =>
+            `<div class="ms-ListItem" style="padding: 0;">
                       <span class="ms-ListItem-secondaryText">`+ item.original.value + `</span>
                       <span class="ms-ListItem-tertiaryText">`+ item.original.email + `</span>
-                    </div>`;
-          },
+                    </div>`
+          ,
           trigger: '#',
           values: [
           ],
-          selectTemplate: function (item) {
-            return '<a class="ms-Link" href="' + item.original.email + '" target="_blank" title="' + item.original.email + '">' + item.original.value + '</a>';
-          }
+          selectTemplate: item =>
+            '<a class="ms-Link" href="' + item.original.email + '" target="_blank" title="' + item.original.email + '">' + item.original.value + '</a>'
         });
 
         var tribute2 = new this.Tribute({
-          menuItemTemplate: function (item) {
-            return `<div tabindex="0" role="button" class="ms-PeoplePicker-peopleListBtn">
+          menuItemTemplate: item =>
+            `<div tabindex="0" role="button" class="ms-PeoplePicker-peopleListBtn">
                       <div class="ms-Persona ms-Persona--selectable ms-Persona--sm">
                         <div class="ms-Persona-imageArea">
                           <div class="ms-Persona-initials ms-Persona-initials--darkBlue">TT</div>
@@ -117,15 +112,12 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
                           <div class="ms-Persona-secondaryText">`+ item.original.email + `</div>
                         </div>
                       </div>
-                    </div>`;
-          },
+                    </div>`,
           trigger: '@',
           values: [
           ],
-          selectTemplate: function (item) {
-            console.log(item);
-            return '<a class="ms-Link" href="mailto:' + item.original.email + '" target="_top" title="' + item.original.value + '">' + item.original.value + '</a>';
-          }
+          selectTemplate: item =>
+            '<a class="ms-Link" href="mailto:' + item.original.email + '" target="_top" title="' + item.original.value + '">' + item.original.value + '</a>'
         });
 
         tribute.attach(document.getElementById('mentions-wp'));
@@ -134,7 +126,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
         document.getElementById('mentions-wp').addEventListener('tribute-no-match', function (e) {
 
           const authContext: AuthenticationContext = new AuthenticationContext(authConfig);
-          const graphApi: string = "https://graph.microsoft.com";
+          //const graphApi: string = "https://graph.microsoft.com";
 
           const self: any = this;
           const d: any = jQuery.Deferred<any>();
@@ -162,7 +154,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
               if (response["@odata.context"].includes("/drive/root/children")) {
                 var documents: any = response.value;
                 for (var document of documents) {
-                  if (tribute.collection[0].values.filter(function (e) { return e.key.toLowerCase() == document.name.toLowerCase(); }).length == 0)
+                  if (tribute.collection[0].values.filter( d => d.key.toLowerCase() == document.name.toLowerCase()).length == 0)
                     tribute.append(0, [
                       { key: document.name, value: document.name, email: document.webUrl }
                     ]);
@@ -172,11 +164,10 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
                 var users: any = response.value;
                 for (var user of users) {
                   let email = '';
-                  if(user.email == undefined) email = user.userPrincipalName.toLowerCase();
+                  if (user.email == undefined) email = user.userPrincipalName.toLowerCase();
                   else email = user.mail.toLowerCase();
 
-                  if (tribute2.collection[0].values.filter(function (e) { return e.key.toLowerCase() == email; }).length == 0) {
-                    console.log(user);
+                  if (tribute2.collection[0].values.filter(u => u.key.toLowerCase() == email).length == 0) {
                     tribute2.append(0, [
                       { key: email, value: user.displayName, email: email }
                     ]);
@@ -198,7 +189,6 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
   }
 
   private manageAuthentication(): void {
-    const self: any = this;
 
     const authContext: AuthenticationContext = new AuthenticationContext(authConfig);
 
