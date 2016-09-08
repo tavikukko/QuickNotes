@@ -1,5 +1,3 @@
-/// <reference path="../../../typings/adal/adal.d.ts" />
-
 import {
   BaseClientSideWebPart,
   IPropertyPaneSettings,
@@ -47,7 +45,6 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
 
   public constructor(context: IWebPartContext) {
     super(context);
-    //importableModuleLoader.loadCss('https://zurb.com/playground/uploads/upload/upload/430/tribute.css');
     importableModuleLoader.loadCss('https://appsforoffice.microsoft.com/fabric/2.6.1/fabric.min.css');
     importableModuleLoader.loadCss('https://appsforoffice.microsoft.com/fabric/2.6.1/fabric.components.min.css');
   }
@@ -59,7 +56,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
   public render(mode: DisplayMode = DisplayMode.Read, data?: IWebPartData): void {
 
     this.domElement.innerHTML = `
-      <div id="mentions-wp" contenteditable=true data-placeholder="Start writing here..." class="ms-font-l ms-fontColor-black">${this.properties.quicknotecontent}</div>
+      <div id="mentions-wp" contenteditable=true data-placeholder="Start writing here..." class="koko">${this.properties.quicknotecontent}</div>
       <hr id="separatpr">
       <button style="margin: 0; display: none;" class="ms-Button ms-Button--primary" id="signinBtn">
         <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>

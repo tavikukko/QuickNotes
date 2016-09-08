@@ -28,11 +28,31 @@
   font-style: italic;
   opacity: 0.4;
   display: block; /* for firefox*/
+      -webkit-font-smoothing: antialiased;
+    color: #333333;
+    font-family: "Segoe UI Regular WestEuropean","Segoe UI","Segoe WP","Tahoma,Arial,sans-serif";
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+    padding: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 18px;
 }
 .ms-button {
   margin: 0;
 }
 .ms-ListItem {
   padding: 0;
+}
+.koko {
+    -webkit-font-smoothing: antialiased;
+    color: #333333;
+    font-family: "Segoe UI Regular WestEuropean","Segoe UI","Segoe WP","Tahoma,Arial,sans-serif";
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+    padding: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 18px;
 }
 
