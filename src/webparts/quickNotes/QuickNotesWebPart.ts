@@ -148,7 +148,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
             }
             let url = `${graphApi}/v1.0/me/drive/root/children?$filter=startswith(name,'${tribute.current.mentionText}')`;
             if (tribute2.isActive)
-              url = `${graphApi}/v1.0/users?$filter=startswith(mail,'${tribute2.current.mentionText}')`;
+              url = `${graphApi}/v1.0/users?$filter=startswith(userPrincipalName,'${tribute2.current.mentionText}') or startswith(mail,'${tribute2.current.mentionText}') or startswith(surname,'${tribute2.current.mentionText}')`;
 
             jQuery.ajax({
               type: "GET",
@@ -172,10 +172,14 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
               else {
                 var users: any = response.value;
                 for (var user of users) {
-                  if (tribute2.collection[0].values.filter(function (e) { return e.key.toLowerCase() == user.mail.toLowerCase(); }).length == 0) {
+                  let email = '';
+                  if(user.email == undefined) email = user.userPrincipalName.toLowerCase();
+                  else email = user.mail.toLowerCase();
+
+                  if (tribute2.collection[0].values.filter(function (e) { return e.key.toLowerCase() == email; }).length == 0) {
                     console.log(user);
                     tribute2.append(0, [
-                      { key: user.mail, value: user.displayName, email: user.mail }
+                      { key: email, value: user.displayName, email: email }
                     ]);
                   }
                 }
