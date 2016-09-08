@@ -1,3 +1,3 @@
 export interface IQuickNotesWebPartProps {
-  description: string;
+  quicknotecontent: string;
 }

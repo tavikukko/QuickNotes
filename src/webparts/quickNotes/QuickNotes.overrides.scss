@@ -23,3 +23,13 @@
       font-weight: bold; }
   .tribute-container .menu-highlighted {
     font-weight: bold; }
+[contenteditable=true]:empty:before {
+  content: attr(data-placeholder);
+  font-style: italic;
+  opacity: 0.4;
+  display: block; /* for firefox*/
+}
+.ms-button {
+  margin: 0;
+}
+

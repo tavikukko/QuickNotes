@@ -13,7 +13,7 @@
     "description": { "default": "QuickNotes description" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "Type your text here"
+      "quicknotecontent": ""
     }
   }]
 }

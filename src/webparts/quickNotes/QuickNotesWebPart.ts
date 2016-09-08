@@ -53,20 +53,20 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
   }
 
   private save(editor: any): void {
-    this.properties.description = editor.innerHTML;
+    this.properties.quicknotecontent = editor.innerHTML;
   }
 
   public render(mode: DisplayMode = DisplayMode.Read, data?: IWebPartData): void {
 
     this.domElement.innerHTML = `
-      <p id="mentions-wp" contenteditable=true class="ms-font-l ms-fontColor-black">${this.properties.description}</p>
+      <div id="mentions-wp" contenteditable=true data-placeholder="Start writing here..." class="ms-font-l ms-fontColor-black">${this.properties.quicknotecontent}</div>
       <hr id="separatpr">
-      <button class="ms-Button ms-Button--primary" id="signinBtn">
+      <button style="margin: 0; display: none;" class="ms-Button ms-Button--primary" id="signinBtn">
         <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
         <span class="ms-Button-label">Login</span>
         <span class="ms-Button-description">Description of the action this button takes</span>
       </button>
-      <button class="ms-Button" id="signoutBtn">
+      <button style="margin: 0; display: none;" class="ms-Button" id="signoutBtn">
         <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--plus"></i></span>
         <span class="ms-Button-label">Logout</span>
         <span class="ms-Button-description"></span>
