@@ -93,7 +93,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
 
         var tribute = new this.Tribute({
           menuItemTemplate: function (item) {
-            return `<div class="ms-ListItem">
+            return `<div class="ms-ListItem" style="padding: 0;">
                       <span class="ms-ListItem-secondaryText">`+ item.original.value + `</span>
                       <span class="ms-ListItem-tertiaryText">`+ item.original.email + `</span>
                     </div>`;
@@ -158,7 +158,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
                 "Authorization": `Bearer ${token}`
               }
             }).done((response: { value: any[] }) => {
-              console.log("Successfully fetched documents from O365.");
+              console.log("Successfully fetched data from O365.");
               d.resolveWith(self);
               if (response["@odata.context"].includes("/drive/root/children")) {
                 var documents: any = response.value;
@@ -181,7 +181,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
                 }
               }
             }).fail((xhr: JQueryXHR) => {
-              const msg: any = `Fetching messages from Office365 failed. ${xhr.status}: ${xhr.statusText}`;
+              const msg: any = `Fetching data from Office365 failed. ${xhr.status}: ${xhr.statusText}`;
               console.log(msg);
               d.rejectWith(self, [msg]);
             });
@@ -208,7 +208,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
     }
     console.log("Is NOT Callback!");
 
-    var user: any = authContext.getCachedUser();
+    var user: IUserInfo = authContext.getCachedUser();
 
     if (user) {
       console.log(`User is logged-in: ${JSON.stringify(user)}`);
@@ -222,6 +222,7 @@ export default class QuickNotesWebPart extends BaseClientSideWebPart<IQuickNotes
       };
     } else {
       console.log("User is NOT logged-in!!");
+      authContext.clearCache();
       document.getElementById('signoutBtn').style.display = 'none';
       document.getElementById('signinBtn').style.display = '';
       document.getElementById('signinBtn').onclick = () => {
