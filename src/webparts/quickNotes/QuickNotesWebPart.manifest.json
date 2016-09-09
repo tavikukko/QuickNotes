@@ -10,8 +10,8 @@
     "groupId": "eda39c73-846f-4f59-9ebd-adcc68d463ab",
     "group": { "default": "Under Development" },
     "title": { "default": "QuickNotes" },
-    "description": { "default": "QuickNotes description" },
-    "officeFabricIconFontName": "Page",
+    "description": { "default": "QuickNotes, writing and linking done right" },
+    "officeFabricIconFontName": "Font",
     "properties": {
       "quicknotecontent": ""
     }
